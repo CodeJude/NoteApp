@@ -5,7 +5,7 @@ const year = new Date().getFullYear();
 const Footer = () => {
   return (
     <footer>
-      <p>JudeCodes Copyright &copy; {year}</p>
+      <p>Coded with ❤️ by Vector &copy; {year}</p>
     </footer>
   );
 };

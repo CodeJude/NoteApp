@@ -1,54 +1,55 @@
 import React, { useState } from "react";
-import AddIcon from '@mui/icons-material/Add';
-import Fab from '@mui/material/Fab';
-import Zoom from '@mui/material/Zoom';
+import AddIcon from "@mui/icons-material/Add";
+import Fab from "@mui/material/Fab";
+import Zoom from "@mui/material/Zoom";
 
 function CreateArea(props) {
-
-  const [isExpanded, setExpanded] = useState(false)
+  const [isExpanded, setExpanded] = useState(false);
 
   //const for the title and content for the input and textarea
   const [note, setNote] = useState({
     title: "",
-    content: ""
+    content: "",
   });
 
   function handleChange(e) {
-        //Destructured object by adding setNote to the previous note"" adding to the existing note
+    //Destructured object by adding setNote to the previous note"" adding to the existing note
 
     const { name, value } = e.target;
 
-    setNote(prevNote => {
+    setNote((prevNote) => {
       return {
         ...prevNote,
-        [name]: value
+        [name]: value,
       };
     });
   }
   //Receiving the createNote in App.js function through props
   function addClick(event) {
     props.onCreate(note);
-    //this sets the setNote back to an empty note thereby clearing the input and textarea for new ones 
+    //this sets the setNote back to an empty note thereby clearing the input and textarea for new ones
     setNote({
       title: "",
-      content: ""
+      content: "",
     });
     event.preventDefault();
   }
 
-  function expand(){
-    setExpanded(true)
-  } 
+  function expand() {
+    setExpanded(true);
+  }
 
   return (
     <div>
       <form className="create-note">
-        {isExpanded && <input
-          name="title"
-          onChange={handleChange}
-          value={note.title}
-          placeholder="Title"
-        /> }
+        {isExpanded && (
+          <input
+            name="title"
+            onChange={handleChange}
+            value={note.title}
+            placeholder="Title"
+          />
+        )}
         <textarea
           name="content"
           onClick={expand}
@@ -58,9 +59,9 @@ function CreateArea(props) {
           rows={isExpanded ? 3 : 1}
         />
         <Zoom in={isExpanded}>
-        <Fab onClick={addClick}>
-          <AddIcon />
-        </Fab>
+          <Fab onClick={addClick}>
+            <AddIcon />
+          </Fab>
         </Zoom>
       </form>
     </div>
